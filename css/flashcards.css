@@ -1,0 +1,63 @@
+/*!
+ * Start Bootstrap - 4 Col Portfolio (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+/*@font-face {
+  font-family: 'Glyphicons Halflings';
+
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/glyphicons-halflings-regular.eot');
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+       url('chrome-extension://__MSG_@@extension_id__/fonts/glyphicons-halflings-regular.woff2') format('woff2'), 
+       url('chrome-extension://__MSG_@@extension_id__/fonts/glyphicons-halflings-regular.woff') format('woff'), 
+       url('chrome-extension://__MSG_@@extension_id__/fonts/glyphicons-halflings-regular.ttf') format('truetype'), 
+       url('chrome-extension://__MSG_@@extension_id__/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}*/
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    background-color: #000 !important;
+}
+
+.card-thumbnail {
+    height: 125px;
+
+}
+
+footer {
+    margin: 50px 0;
+}
+
+#cards
+{
+    list-style-type: none;
+}
+
+#cards > li {
+
+}
+
+.thumbnail {
+    height: 100px;
+    text-align: center;
+    /*display: inline-block;*/
+    vertical-align: middle;
+    float: none;        
+}
+
+a.thumbnail.active {
+ 	background-color: #337ab7 !important;
+    border-color: #337ab7;
+    color: #fff;
+}
+
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.flipclock{
+  zoom: 0.5;
+  -moz-transform: scale(0.5)
+}
