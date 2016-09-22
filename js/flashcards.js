@@ -91,7 +91,7 @@ function populateCards(){
     var js = [ "jquery.js"
                 , "bootstrap.min.js", "bootstrap-select.min.js"
                 , "bootstrap-select.min.js"
-                , "list.js", "list.fuzzysearch.js", "list.pagination.js"
+                , "list.js", "list.fuzzysearch.js"
                 , "flipclock.min.js"
                 ]
     for(i=0; i<js.length; i+=1){
@@ -123,13 +123,9 @@ function populateCards(){
 
 
     plugins = [ ListFuzzySearch() ];
-        if (numCards > 16){
-            plugins.push(ListPagination());
-        }
 
     var cardsList = new List('cards-list', { 
       valueNames: ['name'], 
-      page: 16,
       plugins: plugins 
     });
 
