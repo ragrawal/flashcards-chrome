@@ -62,6 +62,10 @@ a.thumbnail.active {
     color: #fff;
 }
 
+a.thumbnail:hover{
+  text-decoration: none;
+}
+
 .modal .modal-body {
     max-height: 420px;
     overflow-y: auto;
