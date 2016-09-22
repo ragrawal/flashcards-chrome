@@ -15,21 +15,16 @@ function renderTemplate(){
 }
 
 
-$.fn.randomize = function(selector){
-    var $elems = selector ? $(this).find(selector) : $(this).children(),
-        $parents = $elems.parent();
+function randomize(parent){
 
-    $parents.each(function(){
-        $(this).children(selector).sort(function(){
-            return Math.round(Math.random()) - 0.5;
-        }).detach().appendTo(this);
-    });
+    var elems = $(parent).children();
+    while (elems.length) {
+        $(parent).append(elems.splice(Math.floor(Math.random() * elems.length), 1)[0]);
+    };
+}
 
-    return this;
-};
-
-$.fn.sort = function(){
-    var parent = this;
+function sort(parent){
+  
     var elems = $(parent).children();
     var keyToElem = {};
     var keys = [];
@@ -144,11 +139,12 @@ function populateCards(){
     });
 
     $("#card-shuffle").bind('click', function(obj){
-        $("#cards").randomize();
+        console.log("calling randomize");
+        randomize("#cards");
     })
 
     $("#card-sort").bind('click', function(obj){
-        $("#cards").sort()
+        sort("#cards");
     })
 
     $('#card-search').keyup(function() {
