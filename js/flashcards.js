@@ -22,12 +22,28 @@ $.fn.randomize = function(selector){
     $parents.each(function(){
         $(this).children(selector).sort(function(){
             return Math.round(Math.random()) - 0.5;
-        // }). remove().appendTo(this); // 2014-05-24: Removed `random` but leaving for reference. See notes under 'ANOTHER EDIT'
         }).detach().appendTo(this);
     });
 
     return this;
 };
+
+$.fn.sort = function(){
+    var parent = this;
+    var elems = $(parent).children();
+    var keyToElem = {};
+    var keys = [];
+    $.each(elems, function(idx, elem){
+        var key = $(elem).text();
+        keyToElem[key] = elem;
+        keys.push(key);
+    });
+    $.each(keys.sort().reverse(), function(idx, key){
+        console.log(key);
+        var elem = keyToElem[key];
+        $(elem).detach().prependTo(parent);
+    });
+}
 
 
 function populateCards(){
@@ -70,7 +86,8 @@ function populateCards(){
           // $("#cards").append('<div class="col-md-3"><a href="#" data-toggle="modal" data-target="#card' + secNo + '" class="thumbnail well card-thumbnail"><h3>' + heading + '</h3></a></div>');
         $("#cards").append('<li class="col-sm-4 col-md-3 col-lg-3"><a href="#" data-toggle="modal" data-target="#card' + secNo + '" class="thumbnail name well"><h4>' + heading + '</h4></a></li>');                                            
 
-        $("body").append('<div class="modal fade" id="card' + secNo + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">' + heading + '</h4></div><div class="modal-body"><div class="card-content">' + converter.makeHtml(body) + '</div></div><div class="modal-footer"></div></div></div></div>');
+        $("body").append('<div class="modal fade" id="card' + secNo + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h1 class="modal-title">' + heading + '</h1></div><div class="modal-body"><div class="card-content">' + converter.makeHtml(body) + '</div></div></div></div></div>');
+
 
         numCards += 1;
 
@@ -128,6 +145,10 @@ function populateCards(){
 
     $("#card-shuffle").bind('click', function(obj){
         $("#cards").randomize();
+    })
+
+    $("#card-sort").bind('click', function(obj){
+        $("#cards").sort()
     })
 
     $('#card-search').keyup(function() {
@@ -364,16 +385,16 @@ chrome.extension.sendMessage({}, function(response) {
                             var content = $(body).children('.card-content');
                             
                             // add flipclick
-                            $(content).before('<div class="flipclock"></div>');
-                            var flipclock = $(body).children('.flipclock');
+                            $(content).before('<div class="pull-right"><div class="flipclock"></div></div>');
+                            var flipclock = $(body).find('.flipclock');
 
 
                             
                             
                             var clock = new FlipClock($(flipclock), wait, {
-                                clockFace: 'MinuteCounter',
+                                clockFace: 'Counter',
                                 countdown: true,
-                                autoStart: false,
+                                autoStart: true,
                                 callbacks: {
                                     create: function(){
                                         $(content).hide();
@@ -385,7 +406,6 @@ chrome.extension.sendMessage({}, function(response) {
                                     }
                                 }
                             });
-                            clock.start();
 
                         }
                     })
