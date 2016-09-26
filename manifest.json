@@ -1,5 +1,6 @@
 {
-  "name": "Markdown Flashcards",
+  "name": "Markdown Deck",
+  "short_name": "mdD",
   "version": "0.0.0.1",
   "manifest_version": 2,
   "description": "Converts Markdown file into flashcards",
@@ -30,16 +31,23 @@
   , "content_scripts": [
     {
       "matches": [ "<all_urls>" ]
-      , "css": [ ]
+      , "css": [ 
+        "css/bootstrap.min.css"
+        , "css/bootstrap-select.min.css"
+        , "css/flipclock.css"
+        , "css/flashcards.css"
+      ]
       , "js": [
-        "js/jquery.js"
-        , "js/bootstrap.min.js", "js/bootstrap-select.min.js"
-        , "js/list.js", "js/list.fuzzysearch.js", "js/list.pagination.js"
-        , "vendor/showdown-1.4.2/dist/showdown.js" 
-        , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
-        , "vendor/showdown-1.4.2/dist/showdown-tables.min.js"
-        , "js/flipclock.min.js"
-        // ,"js/jspdf.min.js", "js/jspdf.addhtml.js", "js/standard_fonts_metrics.js", "js/split_text_to_size.js", "js/jspdf.from_html.js"
+          "js/jquery.js"
+          , "js/bootstrap.min.js"
+          , "js/bootstrap-select.min.js"
+          , "js/list.js"
+          , "js/list.fuzzysearch.js"
+          , "js/list.pagination.js"
+          , "vendor/showdown-1.4.2/dist/showdown.min.js" 
+          , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
+          , "vendor/showdown-1.4.2/dist/showdown-tables.min.js"
+          , "js/flipclock.min.js"
       ]
       , "run_at": "document_end"
     }

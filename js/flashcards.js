@@ -44,18 +44,6 @@ function sort(parent){
 function populateCards(){
 
     var headElement = document.getElementsByTagName("head")[0];
-    var css = ["bootstrap.min.css"
-                , "bootstrap-select.min.css"
-                , "flipclock.css"
-                , "flashcards.css"                
-            ];
-    for(i=0; i<css.length; i+=1){
-        var styleTag = document.createElement("link");
-        styleTag.rel="stylesheet";
-        styleTag.type="text/css";
-        styleTag.href=chrome.extension.getURL("css/" + css[i]);
-        headElement.appendChild(styleTag);
-    };
 
     var converter = new showdown.Converter({
         literalMidWordUnderscores: true, 
@@ -87,21 +75,6 @@ function populateCards(){
         numCards += 1;
 
     });
-
-    var js = [ "jquery.js"
-                , "bootstrap.min.js", "bootstrap-select.min.js"
-                , "bootstrap-select.min.js"
-                , "list.js", "list.fuzzysearch.js"
-                , "flipclock.min.js"
-                ]
-    for(i=0; i<js.length; i+=1){
-        var scriptTag = document.createElement("script");
-        scriptTag.type = "text/javascript"
-        scriptTag.src=chrome.extension.getURL("js/" + js[i]);
-        headElement.appendChild(scriptTag);
-    }
-
-  //       , "vendor/showdown-1.4.2/dist/showdown.js" , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
 
 
     var config = document.createElement("script");
