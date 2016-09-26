@@ -35,7 +35,9 @@
         "js/jquery.js"
         , "js/bootstrap.min.js", "js/bootstrap-select.min.js"
         , "js/list.js", "js/list.fuzzysearch.js", "js/list.pagination.js"
-        , "vendor/showdown-1.4.2/dist/showdown.js" , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
+        , "vendor/showdown-1.4.2/dist/showdown.js" 
+        , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
+        , "vendor/showdown-1.4.2/dist/showdown-tables.min.js"
         , "js/flipclock.min.js"
         // ,"js/jspdf.min.js", "js/jspdf.addhtml.js", "js/standard_fonts_metrics.js", "js/split_text_to_size.js", "js/jspdf.from_html.js"
       ]

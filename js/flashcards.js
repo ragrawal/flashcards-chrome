@@ -59,7 +59,7 @@ function populateCards(){
 
     var converter = new showdown.Converter({
         literalMidWordUnderscores: true, 
-        extensions: ['prettify']
+        extensions: ['prettify', 'table']
     });
                 
     var numCards = 0
@@ -226,6 +226,7 @@ function closeCard(){
 
 
 function doKeyPress(e){
+    // console.log(e);
     if (keyboardNav == false){
         return ;
     }
@@ -236,6 +237,7 @@ function doKeyPress(e){
 
     //use up arrow key to go previous row
     if (e.which == 38) {
+        e.preventDefault(); 
         var elem = $("#cards li a.active");
         if (elem.length > 0){
             var parent = elem.parent();
@@ -255,6 +257,7 @@ function doKeyPress(e){
 
     }
     else if (e.which == 40){
+        e.preventDefault(); 
         var elem = $("#cards li a.active");
         if (elem.length > 0){
             var parent = elem.parent();
@@ -274,6 +277,7 @@ function doKeyPress(e){
     }
     // use right arrow key to go next
     else if (e.which == 39) {
+        e.preventDefault(); 
         var elem = $("#cards li a.active");
         if (elem.length == 0){
             $("#cards li:first-child a").addClass("active");
@@ -292,7 +296,7 @@ function doKeyPress(e){
     }
     //Use left arrow key to go back
     else if(e.which == 37){
-
+        e.preventDefault(); 
         var elem = $("#cards li a.active");
         if (elem.length == 0){
             $("#cards li:last-child a").addClass("active");
@@ -314,17 +318,20 @@ function doKeyPress(e){
     }
     // use esc to close modal box
     else if (e.keyCode === 27){
+        e.preventDefault(); 
         if(currentCard != null){
             $(currentCard).modal('hide');   
         }
     }
     // use / to activate search box
     else if (e.which == 191){
+        e.preventDefault(); 
         closeCard();
         $("#card-search").focus();
     }
     // use s to shuffle cards
     else if (e.which == 83){
+        e.preventDefault(); 
         $("#cards").randomize();
     }
                         
