@@ -3,7 +3,7 @@
   "short_name": "mdD",
   "version": "0.0.0.1",
   "manifest_version": 2,
-  "description": "Converts Markdown file into flashcards",
+  "description": "Convert Markdown file into flashcards",
   "homepage_url": "http://extensionizr.com",
   "icons": {
     "16": "icons/icon16.png",
