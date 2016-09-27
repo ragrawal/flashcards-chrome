@@ -12,7 +12,7 @@
   },
   "default_locale": "en",
   "permissions": [
-    "<all_urls>"
+    "activeTab"
   ]
   , "web_accessible_resources": [ 
     "template.html" 
@@ -28,28 +28,4 @@
     "default_icon": "icons/icon16.png"
   }
   , "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
-  , "content_scripts": [
-    {
-      "matches": [ "<all_urls>" ]
-      , "css": [ 
-        "css/bootstrap.min.css"
-        , "css/bootstrap-select.min.css"
-        , "css/flipclock.css"
-        , "css/flashcards.css"
-      ]
-      , "js": [
-          "js/jquery.js"
-          , "js/bootstrap.min.js"
-          , "js/bootstrap-select.min.js"
-          , "js/list.js"
-          , "js/list.fuzzysearch.js"
-          , "js/list.pagination.js"
-          , "vendor/showdown-1.4.2/dist/showdown.min.js" 
-          , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
-          , "vendor/showdown-1.4.2/dist/showdown-tables.min.js"
-          , "js/flipclock.min.js"
-      ]
-      , "run_at": "document_end"
-    }
-  ]
 }
