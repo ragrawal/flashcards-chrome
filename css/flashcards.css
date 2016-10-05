@@ -1,5 +1,6 @@
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*No Rounded Corners*/
@@ -9,11 +10,6 @@ body {
           border-radius: 0 !important;
 }
 
-
-.card-thumbnail {
-    height: 125px;
-
-}
 
 footer {
     margin: 50px 0;
@@ -29,22 +25,33 @@ footer {
 }
 
 .thumbnail {
-    text-align: center;
-    display: inline-block;
+    display: table;
     vertical-align: middle;
     float: none;        
     width:100%;
-    height:85px;
+    height:80px;
+    padding-left:10px;
 }
 
 a.thumbnail.active {
- 	background-color: #337ab7 !important;
-    border-color: #337ab7;
-    color: #fff;
+ 	background-color: lightyellow !important;
+  text-decoration: none;
+    /*border-color: yellow;*/
+    /*color: #fff;*/
 }
 
 a.thumbnail:hover{
   text-decoration: none;
+}
+
+.card-title{
+  display:table-cell;
+  vertical-align: middle;
+
+  width:100%;
+  height: 100%;
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
 
 .modal .modal-body {

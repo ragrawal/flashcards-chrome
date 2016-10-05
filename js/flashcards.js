@@ -44,18 +44,20 @@ function sort(parent){
 function populateCards(){
 
     var headElement = document.getElementsByTagName("head")[0];
-    var css = ["bootstrap.min.css"
-                , "bootstrap-select.min.css"
-                , "flipclock.css"
-                , "flashcards.css"                
+    var css = ["css/bootstrap.min.css"
+                , "css/bootstrap-select.min.css"
+                , "css/flipclock.css"
+                , "css/flashcards.css"
+                , "https://fonts.googleapis.com/css?family=Open+Sans:400,700"
             ];
     for(i=0; i<css.length; i+=1){
         var styleTag = document.createElement("link");
         styleTag.rel="stylesheet";
         styleTag.type="text/css";
-        styleTag.href=chrome.extension.getURL("css/" + css[i]);
+        styleTag.href=chrome.extension.getURL(css[i]);
         headElement.appendChild(styleTag);
     };
+
 
     var converter = new showdown.Converter({
         literalMidWordUnderscores: true, 
@@ -78,8 +80,7 @@ function populateCards(){
         var heading = arr[0];
         var body = arr[1];
 
-          // $("#cards").append('<div class="col-md-3"><a href="#" data-toggle="modal" data-target="#card' + secNo + '" class="thumbnail well card-thumbnail"><h3>' + heading + '</h3></a></div>');
-        $("#cards").append('<li class="col-sm-4 col-md-3 col-lg-3"><a href="#" data-toggle="modal" data-target="#card' + secNo + '" class="thumbnail name well"><h4>' + heading + '</h4></a></li>');                                            
+        $("#cards").append('<li class="col-sm-4 col-md-3 col-lg-3"><a href="#" data-toggle="modal" data-target="#card' + secNo + '" class="thumbnail name"><h4 class="card-title">' + heading + '</h4></a></li>');                                            
 
         $("body").append('<div class="modal fade" id="card' + secNo + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h1 class="modal-title">' + heading + '</h1></div><div class="modal-body"><div class="card-content">' + converter.makeHtml(body) + '</div></div></div></div></div>');
 
@@ -87,21 +88,6 @@ function populateCards(){
         numCards += 1;
 
     });
-
-    // var js = [ "jquery.js"
-    //             , "bootstrap.min.js", "bootstrap-select.min.js"
-    //             , "bootstrap-select.min.js"
-    //             , "list.js", "list.fuzzysearch.js"
-    //             , "flipclock.min.js"
-    //             ]
-    // for(i=0; i<js.length; i+=1){
-    //     var scriptTag = document.createElement("script");
-    //     scriptTag.type = "text/javascript"
-    //     scriptTag.src=chrome.extension.getURL("js/" + js[i]);
-    //     headElement.appendChild(scriptTag);
-    // }
-
-  //       , "vendor/showdown-1.4.2/dist/showdown.js" , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
 
 
     var config = document.createElement("script");
