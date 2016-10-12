@@ -11,7 +11,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
           , "vendor/showdown-1.4.2/dist/showdown-prettify.min.js"
           , "vendor/showdown-1.4.2/dist/showdown-tables.min.js"
           , "js/flipclock.min.js"
-          , "js/flashcards.js"
+          , "js/model.js"
+          , "js/view.js"
+          , "js/controller.js"
+
       ];
 
     for(i=0; i<files.length; i+=1){
