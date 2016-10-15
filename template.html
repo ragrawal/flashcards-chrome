@@ -59,9 +59,6 @@
                 </div>
 
 
-                
-
-
 
                 <div class="btn-group" role="group">
                     <input id="card-search" type="textbox" placeholder="Search card" class="form-control" style="width:300px;">
@@ -70,11 +67,6 @@
             <h3 id="page-heading"></h3> 
         </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="flipclock"></div>
-            </div>
-        </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-sm-12">
@@ -96,6 +88,35 @@
 
     </div>
     <!-- /.container -->
+
+    <!-- templates -->
+    <div id="showcard" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ShowCard">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="question"></h2>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4" style="text-align:left;">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <small class="question-prev"></small>
+                            </div>
+                            <div class="col-md-4">&nbsp;</div>                            
+                            <div class="col-md-4" style="text-align:right;">
+                                <small class="question-next"></small>
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- HELP WINDOW -->
     <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

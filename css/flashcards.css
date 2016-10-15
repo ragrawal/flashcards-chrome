@@ -10,6 +10,11 @@ body {
           border-radius: 0 !important;
 }
 
+.question-next,.question-prev {
+  width: 250px;
+  text-overflow: ellipsis;
+  color: gray;
+}
 
 footer {
     margin: 50px 0;

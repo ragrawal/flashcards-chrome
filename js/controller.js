@@ -10,12 +10,47 @@ var converter = new showdown.Converter({
 });
 
 
+function doKeyPress(e){
+    
+    if (keyboardNav == false){
+        return ;
+    }
 
-
-function initializeView(choice){
-    decks[deckId].order(choice);
-    vdeck = new vDeck(decks[deckId]);
-    vdeck.render();
+    //use up arrow key to go previous row
+    if (e.which == 38) {
+        e.preventDefault(); 
+        vdeck.up();
+    }
+    //use down arrow key to go to next row
+    else if (e.which == 40){
+        e.preventDefault(); 
+        vdeck.down();
+    }
+    // use right arrow key to go next
+    else if (e.which == 39) {
+        e.preventDefault(); 
+        vdeck.next();
+    }
+    //Use left arrow key to go back
+    else if(e.which == 37){
+      e.preventDefault(); 
+      vdeck.prev();
+    }
+    // Use o to open
+    else if (e.which == 79){
+      vdeck.open(null);
+    }
+    // use esc to close modal box
+    else if (e.keyCode === 27){
+      e.preventDefault(); 
+      vdeck.close();
+    }
+    // use / to activate search box
+    else if (e.which == 191){
+      e.preventDefault(); 
+      // vdeck.close();
+      $("#card-search").focus();
+    }
 };
 
 
@@ -62,15 +97,36 @@ chrome.extension.sendMessage({}, function(response) {
 
 
             // Parse Markdown File and Render 
-            decks = parse(text);
+            decks = parse(text, converter);
             deckId = 0;
             vdeck = new vDeck(decks[deckId]);
             vdeck.render('reset');
 
             // bind interactions
             $(".btn-sort").bind('click', function(){
-                vdeck.render($(this).data('choice'));
-            })
+                vdeck.sort($(this).data('choice'));
+            });
+
+
+            // bind actions to search box
+            $('#card-search').bind('focus', function (event) {
+                keyboardNav = false;
+            }).bind('blur', function (event) {
+                keyboardNav = true;
+            }).bind('keyup', function(event){
+                vdeck.search($(this).val());
+                if (event.keyCode == 13) {
+                    event.preventDefault();                        
+                    keyboardNav = true;
+                    $(this).blur();
+                    vdeck.select(1);
+                };
+            });
+
+            //add the keyboard handler
+            if (window == top) {
+                window.addEventListener('keyup', doKeyPress, false); 
+            }            
 
         };      
     }, 10);

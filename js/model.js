@@ -53,35 +53,6 @@ function Deck(name){
         this._cards.push(card)
     }
 
-
-
-    this.order = function(choice){
-    	
-        if(choice=='random'){
-            var j, x, i;
-            for (i = this._counter; i; i--) {
-                j = Math.floor(Math.random() * i);
-                x = this._cards[i - 1];
-                this._cards[i - 1] = this._cards[j];
-                this._cards[j] = x;
-            };
-        }
-        else if (choice == 'reset'){
-            this._cards.sort(function(a, b){
-                if(a.origianlIdx() < b.origianlIdx()) return -1;
-                if(a.origianlIdx() > b.origianlIdx()) return 1;
-                return 0;
-            });
-        }
-        else if (choice == 'alphanumeric'){
-            this._cards.sort(function(a, b){
-                if(a.question() < b.question()) return -1;
-                if(a.question() > b.question()) return 1;
-                return 0;
-            });
-        }
-    };
-
     this.get = function(idx){
     	return this._cards[idx];
     }
@@ -91,7 +62,7 @@ function Deck(name){
 /**
 * Parses input string into series of decks
 */
-function parse(infile){
+function parse(infile, converter){
     
     var decks = [];
     var counter = -1;
@@ -105,7 +76,7 @@ function parse(infile){
         }
         else if(line.startsWith("## ")){
             if (question != null && question.length > 0){
-                decks[counter].addCard(question, answer.trim());
+                decks[counter].addCard(question, converter.makeHtml(answer.trim()));
             }
             question = line.replace('##', '').trim();
             answer = "";            
@@ -115,7 +86,7 @@ function parse(infile){
     });
 
     if(question != null & question.length > 0){
-        decks[counter].addCard(question, answer);
+        decks[counter].addCard(question, converter.makeHtml(answer.trim()));
     }
 
     return decks;
