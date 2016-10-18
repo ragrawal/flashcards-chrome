@@ -1,6 +1,13 @@
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+  margin-bottom: 5px !important;
+}
+
+.page-header {
+  margin-top:5px !important;
 }
 
 /*No Rounded Corners*/
@@ -11,7 +18,7 @@ body {
 }
 
 .question-next,.question-prev {
-  width: 250px;
+  width: 50px;
   text-overflow: ellipsis;
   color: gray;
 }

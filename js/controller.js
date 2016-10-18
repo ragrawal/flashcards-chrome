@@ -1,13 +1,4 @@
-// Initialize Global Variables
-text = document.body.innerHTML.replace(/^<pre.*>/, '').replace(/<\/pre>$/,''); 
-var deck = null;
-var deckId = 0;
-var keyboardNav = true;
-var questionContainer = null;
-var converter = new showdown.Converter({
-    literalMidWordUnderscores: true, 
-    extensions: ['prettify', 'table']
-});
+
 
 
 function doKeyPress(e){
@@ -69,7 +60,7 @@ chrome.extension.sendMessage({}, function(response) {
                         , "css/bootstrap-select.min.css"
                         , "css/flipclock.css"
                         , "css/flashcards.css"
-                        , "https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+                        , "css/font.css"
                     ];
             for(i=0; i<css.length; i+=1){
                 var styleTag = document.createElement("link");
@@ -123,6 +114,15 @@ chrome.extension.sendMessage({}, function(response) {
                 };
             });
 
+            $(".question-prev").bind('click', function(e){
+                e.preventDefault(); 
+                vdeck.prev();
+            });
+            $(".question-next").bind('click', function(e){
+                e.preventDefault();
+                vdeck.next();
+            });
+
             //add the keyboard handler
             if (window == top) {
                 window.addEventListener('keyup', doKeyPress, false); 
@@ -133,10 +133,26 @@ chrome.extension.sendMessage({}, function(response) {
 });
 
 
-// Load template
-$.get(chrome.extension.getURL("template.html"), function(page){
-    document.body.innerHTML = page;
-});
+// Initialize Global Variables
+if(document.body.innerHTML.startsWith('<!-- MARKDOWN DECK -->') == false){
+    text = document.body.innerHTML.replace(/^<pre.*>/, '').replace(/<\/pre>$/,''); 
+    var deck = null;
+    var deckId = 0;
+    var keyboardNav = true;
+    var questionContainer = null;
+    var converter = new showdown.Converter({
+        literalMidWordUnderscores: true, 
+        extensions: ['prettify', 'table']
+    });
+    // Load template
+    $.get(chrome.extension.getURL("template.html"), function(page){
+        document.body.innerHTML = page;
+    });
+}
+else{
+    alert('Markdown Deck is already loaded.');
+}
+
 
 
 
