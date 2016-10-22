@@ -92,7 +92,10 @@ chrome.extension.sendMessage({}, function(response) {
             deckId = 0;
             vdeck = new vDeck(decks[deckId]);
             vdeck.render('reset');
+            $(".answer > table").addClass("table table-striped table-bordered");
+            $(".answer > table > thead").addClass("thead-default");
 
+            
             // bind interactions
             $(".btn-sort").bind('click', function(){
                 vdeck.sort($(this).data('choice'));

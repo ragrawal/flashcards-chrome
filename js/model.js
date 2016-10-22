@@ -76,7 +76,8 @@ function parse(infile, converter){
         }
         else if(line.startsWith("## ")){
             if (question != null && question.length > 0){
-                decks[counter].addCard(question, converter.makeHtml(answer.trim()));
+                text = converter.makeHtml(answer.trim());
+                decks[counter].addCard(question, text);
             }
             question = line.replace('##', '').trim();
             answer = "";            
@@ -86,7 +87,8 @@ function parse(infile, converter){
     });
 
     if(question != null & question.length > 0){
-        decks[counter].addCard(question, converter.makeHtml(answer.trim()));
+        obj = converter.makeHtml(answer.trim());
+        decks[counter].addCard(question, obj);
     }
 
     return decks;

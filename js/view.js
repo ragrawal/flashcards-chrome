@@ -135,13 +135,13 @@ function vDeck(deck){
         }
 
         var parent = this.get(idx).parents('li');
-        var prev = this.get(idx -1);
-        var next = this.get(idx + 1);
+        var prev = this.get(idx -1).find('.question');
+        var next = this.get(idx + 1).find('.question');
 
         this._modal.find('.question').html(parent.find('.question').html());
         this._modal.find('.modal-body').html(parent.find('.answer').html());
-        this._modal.find('.question-prev').html(prev.find('.question').html());
-        this._modal.find('.question-next').html(next.find('.question').html());
+        this._modal.find('.question-prev').html(prev.html());
+        this._modal.find('.question-next').html(next.html());
         this._modal.modal('show');
     }
 
