@@ -142,8 +142,9 @@ chrome.extension.sendMessage({}, function(response) {
 
 
 if(document.body.innerHTML.startsWith('<!-- MARKDOWN DECK -->') == false){
+
+
     text = document.body.innerHTML.replace(/^<pre.*>/, '').replace(/<\/pre>$/,''); 
-    console.log(text);
     var deck = null;
     var deckId = 0;
     var keyboardNav = true;

@@ -1,3 +1,4 @@
+# Markdown Deck
 
 ## What is Markdown Deck
 Markdown *Deck* is an educational app that works with markdown files. It converts your markdown notes into flashcards. 
