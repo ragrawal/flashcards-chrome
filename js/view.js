@@ -63,6 +63,8 @@ function vDeck(deck){
 
         // remove existing elements and render cards
         this._container.empty();
+        this._listSearch.clear();
+        
         for(i=0; i<this._deck.size(); i+=1){
             var card = this._deck.get(i);
             this._listSearch.add({
@@ -115,6 +117,9 @@ function vDeck(deck){
     }
 
     this.sort = function(choice){
+
+        this._container.find('li > a.active').removeClass('active');
+
         if (choice == 'reset'){
             this._listSearch.sort('originalIdx');
         }
@@ -127,6 +132,7 @@ function vDeck(deck){
                 this._container.append(elems.splice(Math.floor(Math.random() * elems.length), 1)[0]);
             };
         }
+        this.select(1);
     }
 
     this.open = function(idx){
@@ -140,8 +146,23 @@ function vDeck(deck){
 
         this._modal.find('.question').html(parent.find('.question').html());
         this._modal.find('.modal-body').html(parent.find('.answer').html());
-        this._modal.find('.question-prev').html(prev.html());
-        this._modal.find('.question-next').html(next.html());
+
+        // display previous and next button
+        if(idx > 1){
+            this._modal.find('.question-prev').parent().show();
+            this._modal.find('.question-prev').html(prev.html());
+        }
+        else{
+            this._modal.find('.question-prev').parent().hide();
+        }
+
+        if(idx < this._deck.size()){
+            this._modal.find('.question-next').parent().show();
+            this._modal.find('.question-next').html(next.html());
+        }else{
+            this._modal.find('.question-next').parent().hide();
+        }
+        
         this._modal.modal('show');
     }
 

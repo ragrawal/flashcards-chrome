@@ -15,10 +15,12 @@
     "activeTab"
   ]
   , "web_accessible_resources": [ 
-    "template.html" 
-    , "fonts/*.*"
-    , "css/*.css"
-    , "js/*.js"
+      "template.html" 
+      , "fonts/*.*"
+      , "css/*.css"
+      , "js/*.js"
+      , "icons/*.png"
+      , "readme.md"
   ]
   , "background": {
     "scripts": ["js/background.js"]

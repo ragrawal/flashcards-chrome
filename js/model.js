@@ -68,20 +68,27 @@ function parse(infile, converter){
     var counter = -1;
     var question = null;
     var answer = "";
+    var codeBlock = false;
     $.each(infile.split("\n"), function(lineNo, line){
-    	if (line.startsWith("# ")){
+    	if (!codeBlock && line.startsWith("# ")){
             decks.push(new Deck(line.replace("#", "").trim()));
-
             counter += 1;
         }
-        else if(line.startsWith("## ")){
+        else if(!codeBlock && line.startsWith("## ")){
             if (question != null && question.length > 0){
                 text = converter.makeHtml(answer.trim());
                 decks[counter].addCard(question, text);
             }
             question = line.replace('##', '').trim();
             answer = "";            
-        }else{
+        }
+        else if (line.startsWith("```")){
+            console.log("Found code Block");
+            codeBlock = !codeBlock;
+            console.log(codeBlock);
+            answer += line + "\n";
+        }
+        else{
             answer += line + "\n"
         }
     });

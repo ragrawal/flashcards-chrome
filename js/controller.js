@@ -44,6 +44,14 @@ function doKeyPress(e){
     }
 };
 
+function load(text) {
+    decks = parse(text, converter);
+    deckId = 0;
+    vdeck = new vDeck(decks[deckId]);
+    vdeck.render('reset');
+    $(".answer > table").addClass("table table-striped table-bordered");
+    $(".answer > table > thead").addClass("thead-default");
+}
 
 chrome.extension.sendMessage({}, function(response) {
     var readyStateCheckInterval = setInterval(function() {
@@ -76,7 +84,7 @@ chrome.extension.sendMessage({}, function(response) {
             config.innerHTML = 'MathJax.Hub.Config({' + 
                     'extensions: ["tex2jax.js"],' + 
                     'jax: ["input/TeX", "output/HTML-CSS"],' + 
-                    'tex2jax: {inlineMath: [["$","$"], ["\\(","\\)"]]},' + 
+                    'tex2jax: {inlineMath: [["$","$"]]},' + 
                     'processEscapes: true'+
                     '});'
             headElement.appendChild(config);
@@ -88,12 +96,7 @@ chrome.extension.sendMessage({}, function(response) {
 
 
             // Parse Markdown File and Render 
-            decks = parse(text, converter);
-            deckId = 0;
-            vdeck = new vDeck(decks[deckId]);
-            vdeck.render('reset');
-            $(".answer > table").addClass("table table-striped table-bordered");
-            $(".answer > table > thead").addClass("thead-default");
+            load(text);
 
             
             // bind interactions
@@ -129,16 +132,18 @@ chrome.extension.sendMessage({}, function(response) {
             //add the keyboard handler
             if (window == top) {
                 window.addEventListener('keyup', doKeyPress, false); 
-            }            
-
+            }
         };      
     }, 10);
 });
 
 
 // Initialize Global Variables
+
+
 if(document.body.innerHTML.startsWith('<!-- MARKDOWN DECK -->') == false){
     text = document.body.innerHTML.replace(/^<pre.*>/, '').replace(/<\/pre>$/,''); 
+    console.log(text);
     var deck = null;
     var deckId = 0;
     var keyboardNav = true;
@@ -147,9 +152,12 @@ if(document.body.innerHTML.startsWith('<!-- MARKDOWN DECK -->') == false){
         literalMidWordUnderscores: true, 
         extensions: ['prettify', 'table']
     });
+
     // Load template
     $.get(chrome.extension.getURL("template.html"), function(page){
         document.body.innerHTML = page;
+        $("#logo").attr('src', chrome.extension.getURL('icons/logo.png'));
+        $(".md").html(converter.makeHtml($(".md").text()));
     });
 }
 else{
