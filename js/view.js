@@ -21,6 +21,7 @@ function vDeck(deck){
 
     this._container = $("#cards");
     this._modal = $("#showcard");
+    this._waitForAnswer = 10;
 
 
     /**
@@ -44,7 +45,6 @@ function vDeck(deck){
 
         // Open Answer Window
         if(this._modal.hasClass('in')){
-            // this._modal.modal('hide');
             this.open(id);
         }
     }
@@ -145,7 +145,7 @@ function vDeck(deck){
         var next = this.get(idx + 1).find('.question');
 
         this._modal.find('.question').html(parent.find('.question').html());
-        this._modal.find('.modal-body').html(parent.find('.answer').html());
+        this._modal.find('.answer').html(parent.find('.answer').html());
 
         // display previous and next button
         if(idx > 1){
